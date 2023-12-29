@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/5.3.2/litera/bootstrap.min.css" 
+        integrity="sha512-FAKbqNc1K2O4cnjyyiTs7loU3hwtcTF5y59TnJMcPJK/fbzY8kJaMGak8/Nsg5VL9CLiUf7M06ct+mleM2UnwA==" 
+        crossorigin="anonymous" referrerpolicy="no-referrer">
+        <title>Weather App </title>
+    </head>
+
+    <body>
+        <div class="navbar navbar-expand-lg fixed-top navbar-dark bg-dark">
+            <div class="container-fluid">
+            <a href="../" class="navbar-brand">Weather</a>
+            </div>
+        </div>
+
+        <br><br><br>
+
+        <nav class="navbar navbar-expand-lg navbar-dark bg-light">
+            <form method="post" class="col-md">
+            {% csrf_token %}
+            <div class=" input-group">
+
+            <input type="text" class="form-control" name="city" placeholder="Choose Your City ...">
+            <div class="input-group-btn">
+                <button type="submit" class="btn btn-primary">Search</button>
+            </div>
+            </div>
+            <form>
+        </nav>
+        <br> <br>
+        <div class="row">
+            {% if country_code and coordinate and temp and pressure and humidity %}
+            <div class="col d-flex justify-content-center">
+            <div class=" card text-white bg-light mb-6">
+            <div class=" card-body" style="color: black;">
+                <h4><span class="badge badge-primary" style="color:black;">City :</span> {{city}}</h4>
+                <h4><span class="badge badge-primary" style="color:black;">Country Code :</span> {{country_code}}</h4>
+                <h4><span class="badge badge-primary" style="color:black;">Coordinates [X,Y] :</span> {{coordinate}}</h4>
+                <h4><span class="badge badge-primary" style="color:black;">Temperature in Celsius :</span> {{temp}}</h4>
+                <h4><span class="badge badge-primary" style="color:black;">Pressure :</span> {{pressure}} </h4>
+                <h4><span class="badge badge-primary" style="color:black;">Humidity : </span> {{humidity}}</h4>
+                <h4><span class="badge badge-primary" style="color:black;">Forecast : </span> {{main}} 
+                    <img src="http://openweathermap.org/img/w/{{icon}}.png" alt="Image" style="width:70px"></h4>
+                <h4><span class="badge badge-primary" style="color:black;">Description : </span> {{description}}</h4>
+            </div>
+            {% endif %}
+            </div>
+    </body>
+
+</html>
